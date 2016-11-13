@@ -1,6 +1,4 @@
-$:.unshift File.dirname(__FILE__)
-
-require 'configurator/extension_methods'
+require_relative 'configurator/extension_methods'
 
 module Configurator
   include Configurator::ExtensionMethods

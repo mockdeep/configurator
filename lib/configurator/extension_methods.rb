@@ -1,9 +1,7 @@
 module Configurator
-  
   module ExtensionMethods
-    
     public
-  
+
     # set config paramaters within class block code.
     #   class Klass
     #     extend Configurator
@@ -23,7 +21,7 @@ module Configurator
     # This method also works as instance method because instance includes this module automatically.
     #   kls = Klass.new
     #   kls.config[key]         # => value
-    # 
+    #
     def config( key = nil, value = nil )
       @__self_config ||= {}
       @__config = __check_config
@@ -33,13 +31,13 @@ module Configurator
       else                     return @__config
       end
     end
-    
+
     private
-    
+
     def __merge_config
       __inherited_config.merge( @__self_config )
     end
-  
+
     def __check_config
       @__config ||= {}
       __config = __merge_config
@@ -50,7 +48,7 @@ module Configurator
       end
       @__config = __merge_config
     end
-    
+
     def __inherited_config
       if self.respond_to?( :ancestors )
         @__inherited_config = {}
@@ -64,7 +62,7 @@ module Configurator
       end
       return @__inherited_config
     end
-    
+
     def method_missing( name, *args, &block )
       if @__config.keys.include?( name.to_sym )
         @__config[ name.to_sym ]
@@ -72,8 +70,5 @@ module Configurator
         super
       end
     end
-  
   end
-  
 end
-

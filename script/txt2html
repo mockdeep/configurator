@@ -17,6 +17,7 @@ version  = Configurator::VERSION::STRING
 download = 'http://rubyforge.org/projects/configurator'
 
 class Fixnum
+
   def ordinal
     # teens
     return 'th' if (10..19).include?(self % 100)
@@ -28,12 +29,15 @@ class Fixnum
     else    return 'th'
     end
   end
+
 end
 
 class Time
+
   def pretty
     return "#{mday}#{mday.ordinal} #{strftime('%B')} #{year}"
   end
+
 end
 
 def convert_syntax(syntax, source)
@@ -43,7 +47,7 @@ end
 if ARGV.length >= 1
   src, template = ARGV
   template ||= File.join(File.dirname(__FILE__), '/../website/template.rhtml')
-  
+
 else
   puts("Usage: #{File.split($0).last} source.txt [template.rhtml] > output.html")
   exit!

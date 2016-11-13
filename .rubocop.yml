@@ -200,26 +200,6 @@ Style/ConstantName:
   Exclude:
     - 'setup.rb'
 
-# Offense count: 8
-# Cop supports --auto-correct.
-Style/EmptyLines:
-  Exclude:
-    - 'config/hoe.rb'
-    - 'setup.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, no_empty_lines
-Style/EmptyLinesAroundModuleBody:
-  Exclude:
-    - 'setup.rb'
-
-# Offense count: 1
-Style/EndOfLine:
-  Exclude:
-    - 'Rakefile'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/FirstArrayElementLineBreak:
@@ -366,12 +346,6 @@ Style/SpaceInsideParens:
 Style/SpaceInsideBrackets:
   Enabled: false
 
-Style/EmptyLinesAroundClassBody:
-  Enabled: false
-
-Style/TrailingWhitespace:
-  Enabled: false
-
 Style/StringLiterals:
   Enabled: false
 
@@ -394,9 +368,6 @@ Style/IndentationWidth:
   Enabled: false
 
 Style/MultilineIfModifier:
-  Enabled: false
-
-Style/TrailingBlankLines:
   Enabled: false
 
 Style/SpaceInsideStringInterpolation:

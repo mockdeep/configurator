@@ -41,7 +41,6 @@ def File.dir?(path)
   File.directory?((path[-1,1] == '/') ? path : path + '/')
 end
 
-
 class ConfigTable
 
   include Enumerable
@@ -315,6 +314,7 @@ class ConfigTable
   end
 
   class Item
+
     def initialize(name, template, default, desc)
       @name = name.freeze
       @template = template
@@ -355,9 +355,11 @@ class ConfigTable
       setup_rb_error "config: --#{name} requires argument" unless val
       val
     end
+
   end
 
   class BoolItem < Item
+
     def config_type
       'bool'
     end
@@ -377,9 +379,11 @@ class ConfigTable
         setup_rb_error "config: --#{@name} accepts only yes/no for argument"
       end
     end
+
   end
 
   class PathItem < Item
+
     def config_type
       'path'
     end
@@ -390,15 +394,19 @@ class ConfigTable
       setup_rb_error "config: --#{@name} requires argument"  unless path
       path[0,1] == '$' ? path : File.expand_path(path)
     end
+
   end
 
   class ProgramItem < Item
+
     def config_type
       'program'
     end
+
   end
 
   class SelectItem < Item
+
     def initialize(name, selection, default, desc)
       super
       @ok = selection.split('/')
@@ -416,9 +424,11 @@ class ConfigTable
       end
       val.strip
     end
+
   end
 
   class ExecItem < Item
+
     def initialize(name, selection, desc, &block)
       super name, selection, nil, desc
       @ok = selection.split('/')
@@ -446,9 +456,11 @@ class ConfigTable
       end
       @action.call v, table
     end
+
   end
 
   class PackageSelectionItem < Item
+
     def initialize(name, template, default, help_default, desc)
       super name, template, default, desc
       @help_default = help_default
@@ -468,9 +480,11 @@ class ConfigTable
       end
       val
     end
+
   end
 
   class MetaConfigEnvironment
+
     def initialize(config, installer)
       @config = config
       @installer = installer
@@ -527,14 +541,13 @@ class ConfigTable
       raise '[setup.rb fatal] multi-package metaconfig API declare_packages() called for single-package; contact application package vendor' unless @installer
       @installer.packages = list
     end
+
   end
 
 end   # class ConfigTable
 
-
 # This module requires: #verbose?, #no_harm?
 module FileOperations
-
   def mkdir_p(dirname, prefix = nil)
     dirname = prefix + File.expand_path(dirname) if prefix
     $stderr.puts "mkdir -p #{dirname}" if verbose?
@@ -659,7 +672,7 @@ module FileOperations
   def ruby(*args)
     command config('rubyprog'), *args
   end
-  
+
   def make(task = nil)
     command(*[config('makeprog'), task].compact)
   end
@@ -681,13 +694,10 @@ module FileOperations
       return d.select {|ent| File.dir?("#{dir}/#{ent}") } - DIR_REJECT
     }
   end
-
 end
-
 
 # This module requires: #srcdir_root, #objdir_root, #relpath
 module HookScriptAPI
-
   def get_config(key)
     @config[key]
   end
@@ -722,7 +732,7 @@ module HookScriptAPI
   def srcdirectory?(path)
     File.dir?(srcfile(path))
   end
-  
+
   def srcfile?(path)
     File.file?(srcfile(path))
   end
@@ -744,9 +754,7 @@ module HookScriptAPI
       File.dir?(File.join(curr_srcdir(), path, fname))
     }
   end
-
 end
-
 
 class ToplevelInstaller
 
@@ -826,7 +834,7 @@ class ToplevelInstaller
       __send__ "exec_#{task}"
     end
   end
-  
+
   def run_metaconfigs
     @config.load_script "#{@ardir}/metaconfig"
   end
@@ -1020,7 +1028,6 @@ class ToplevelInstaller
 
 end   # class ToplevelInstaller
 
-
 class ToplevelInstallerMulti < ToplevelInstaller
 
   include FileOperations
@@ -1153,7 +1160,6 @@ class ToplevelInstallerMulti < ToplevelInstaller
   end
 
 end   # class ToplevelInstallerMulti
-
 
 class Installer
 
@@ -1306,6 +1312,7 @@ class Installer
   end
 
   class Shebang
+
     def Shebang.load(path)
       line = nil
       File.open(path) {|f|
@@ -1331,6 +1338,7 @@ class Installer
     def to_s
       "#! #{@cmd}" + (@args.empty? ? '' : " #{@args.join(' ')}")
     end
+
   end
 
   #
@@ -1404,7 +1412,7 @@ class Installer
   end
 
   # picked up many entries from cvs-1.11.1/src/ignore.c
-  JUNK_FILES = %w( 
+  JUNK_FILES = %w(
     core RCSLOG tags TAGS .make.state
     .nse_depinfo #* .#* cvslog.* ,* .del-* *.olb
     *~ *.old *.bak *.BAK *.orig *.rej _$* *$
@@ -1565,7 +1573,6 @@ class Installer
   end
 
 end   # class Installer
-
 
 class SetupError < StandardError; end
 

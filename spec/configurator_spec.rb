@@ -9,14 +9,14 @@ class SampleClass
 
 end
 
-class SampleChildClass < SampleClass
-
-  config :name, 'child'
-  config :array, [4, 5, 6]
-
-end
-
 RSpec.describe Configurator do
+  xit 'does not allow hash access to config' do
+    sample = SampleClass.new
+    expect do
+      sample.config[:name]
+    end.to raise_error(NoMethodError)
+  end
+
   it 'allows assignment of configurations' do
     sample = SampleClass.new
     expect(sample).to be
@@ -47,31 +47,5 @@ RSpec.describe Configurator do
     sample = SampleClass.new
     expect(sample.name).to eq 'sample'
     expect(sample.address).to eq '127.0.0.1'
-  end
-
-  it 'allows for sub-classing' do
-    sample = SampleChildClass.new
-    expect(sample.config[:name]).to eq 'child'
-    expect(sample.config[:address]).to eq '127.0.0.1'
-    expect(sample.config[:array]).to eq [4, 5, 6]
-    expect(sample.config[:hash][:foo]).to eq 1
-    expect(sample.config[:hash][:bar]).to eq 2
-    expect(sample.config[:hash][:baz]).to eq 3
-
-    sample.config[:name] = 'mac'
-    expect(sample.config[:name]).to eq 'mac'
-
-    sample.config :giz, 12
-    expect(sample.config[:giz]).to eq 12
-
-    sample2 = SampleChildClass.new
-    expect(sample2.config[:giz]).to eq nil
-
-    sample3 = SampleClass.new
-    expect(sample3.config[:giz]).to eq nil
-
-    SampleClass.config :giz, 999
-    expect(sample.config[:giz]).to eq 12
-    expect(sample2.config[:giz]).to eq 999
   end
 end

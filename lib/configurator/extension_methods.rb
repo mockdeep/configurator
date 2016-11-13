@@ -18,7 +18,7 @@ module Configurator
   private
 
     def __merge_config
-      __inherited_config.merge(@__self_config)
+      __default_config.merge(@__self_config)
     end
 
     def __check_config
@@ -30,18 +30,12 @@ module Configurator
       @__config = __merge_config
     end
 
-    def __inherited_config
+    def __default_config
       if respond_to?(:ancestors)
-        @__inherited_config = {}
-        ancestors[1..(ancestors.size - 1)].each do |ancestor|
-          if ancestor.respond_to?(:config) && ancestor.config.is_a?(Hash)
-            @__inherited_config = ancestor.config.merge(@__inherited_config)
-          end
-        end
+        {}
       else
-        @__inherited_config = self.class.config
+        self.class.config
       end
-      @__inherited_config
     end
 
     def method_missing(name, *args, &block)

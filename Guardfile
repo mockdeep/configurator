@@ -13,7 +13,9 @@ guard :rspec, cmd: 'bundle exec rspec' do
 
   # Ruby files
   ruby = dsl.ruby
+  puts ruby.lib_files
   dsl.watch_spec_files_for(ruby.lib_files)
+  watch(%r{^lib/(.+)\.rb$}) { 'spec/' }
 end
 
 guard :rubocop do

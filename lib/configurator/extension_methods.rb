@@ -1,27 +1,6 @@
 # frozen_string_literal: true
 module Configurator
   module ExtensionMethods
-    # set config paramaters within class block code.
-    #   class Klass
-    #     extend Configurator
-    #     config key, value
-    #   end
-    #
-    # Another way to set paramaters.
-    #   Klass.config key, value
-    #   Klass.config[key] = value
-    #   Klass.new.config key, value
-    #   Klass.new.config[key] = value
-    #
-    # Reffer to config paramaters.
-    #   Klass.config[key]       # => value
-    #   Klass.new.config[key]   # => value
-    #
-    # This method also works as instance method because instance includes this
-    # module automatically.
-    #   kls = Klass.new
-    #   kls.config[key]         # => value
-    #
     def config(key = nil, value = nil)
       @__self_config ||= {}
       @__config = __check_config

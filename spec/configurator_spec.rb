@@ -37,6 +37,18 @@ RSpec.describe Configurator do
     expect(sample2.config[:boo]).to eq nil
   end
 
+  it 'returns the given key when passed' do
+    sample = SampleClass.new
+    expect(sample.config(:name)).to eq 'sample'
+    expect(sample.config(:address)).to eq '127.0.0.1'
+  end
+
+  xit 'allows direct access of configurations' do
+    sample = SampleClass.new
+    expect(sample.name).to eq 'sample'
+    expect(sample.address).to eq '127.0.0.1'
+  end
+
   it 'allows for sub-classing' do
     sample = SampleChildClass.new
     expect(sample.config[:name]).to eq 'child'

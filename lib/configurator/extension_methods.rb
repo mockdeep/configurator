@@ -28,8 +28,8 @@ module Configurator
       @__self_config ||= {}
       @__config = __check_config
       case
-      when ( key and value ) : @__self_config[ key ] = value; @__config = __merge_config; return value
-      when key               : return @__config[ key ]
+      when ( key and value ) then @__self_config[ key ] = value; @__config = __merge_config; return value
+      when key               then return @__config[ key ]
       else                     return @__config
       end
     end

@@ -1,0 +1,496 @@
+require: rubocop-rspec
+
+AllCops:
+  DefaultFormatter: fuubar
+  TargetRubyVersion: 2.3
+  DisplayCopNames: true
+
+# default disabled rules
+Style/AutoResourceCleanup:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    find: 'detect'
+    find_all: 'select'
+
+Style/FirstArrayElementLineBreak:
+  Enabled: true
+
+Style/FirstHashElementLineBreak:
+  Enabled: true
+
+Style/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Style/FirstMethodParameterLineBreak:
+  Enabled: true
+
+Style/MultilineArrayBraceLayout:
+  Enabled: true
+
+Style/MultilineHashBraceLayout:
+  Enabled: true
+
+Style/MultilineMethodCallBraceLayout:
+  Enabled: true
+
+Style/MultilineMethodDefinitionBraceLayout:
+  Enabled: true
+
+Style/OptionHash:
+  Enabled: true
+
+Style/Send:
+  Enabled: true
+
+RSpec/VerifiedDoubles:
+  Enabled: true
+
+# non-conventional rules
+Style/LambdaCall:
+  EnforcedStyle: braces
+
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+# rules to improve or enable
+
+# Offense count: 5
+# Configuration parameters: AllowSafeAssignment.
+Lint/AssignmentInCondition:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AlignWith, SupportedStyles.
+# SupportedStyles: either, start_of_block, start_of_line
+Lint/BlockAlignment:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+Lint/DuplicatedKey:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+Lint/EmptyWhen:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 2
+Lint/HandleExceptions:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 5
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+Metrics/AbcSize:
+  Max: 91
+
+# Offense count: 4
+# Configuration parameters: CountComments.
+Metrics/ClassLength:
+  Max: 282
+
+# Offense count: 4
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+# Offense count: 4
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 158
+
+# Offense count: 7
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 99
+
+# Offense count: 1
+# Configuration parameters: CountComments.
+Metrics/ModuleLength:
+  Max: 126
+
+# Offense count: 3
+Metrics/PerceivedComplexity:
+  Max: 12
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: SupportedStyles, IndentationWidth.
+# SupportedStyles: outdent, indent
+Style/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: with_first_parameter, with_fixed_indentation
+Style/AlignParameters:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 13
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: always, conditionals
+Style/AndOr:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 21
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
+# SupportedStyles: line_count_based, semantic, braces_for_chaining
+# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
+# FunctionalMethods: let, let!, subject, watch
+# IgnoredMethods: lambda, proc, it
+Style/BlockDelimiters:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 5
+# Cop supports --auto-correct.
+Style/ClassMethods:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, SingleLineConditionsOnly.
+# SupportedStyles: assign_to_condition, assign_inside_condition
+Style/ConditionalAssignment:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 2
+Style/ConstantName:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 8
+# Cop supports --auto-correct.
+Style/EmptyLines:
+  Exclude:
+    - 'config/hoe.rb'
+    - 'setup.rb'
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: empty_lines, empty_lines_except_namespace, no_empty_lines
+Style/EmptyLinesAroundModuleBody:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+Style/EndOfLine:
+  Exclude:
+    - 'Rakefile'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Style/FirstArrayElementLineBreak:
+  Exclude:
+    - 'config/hoe.rb'
+    - 'setup.rb'
+
+# Offense count: 24
+# Cop supports --auto-correct.
+Style/FirstMethodArgumentLineBreak:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: format, sprintf, percent
+Style/FormatString:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 3
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: SupportedStyles.
+# SupportedStyles: call, braces
+Style/LambdaCall:
+  EnforcedStyle: call
+
+# Offense count: 40
+# Cop supports --auto-correct.
+Style/MethodCallParentheses:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 18
+# Cop supports --auto-correct.
+Style/MutableConstant:
+  Exclude:
+    - 'config/hoe.rb'
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/Not:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedOctalStyle, SupportedOctalStyles.
+# SupportedOctalStyles: zero_with_o, zero_only
+Style/NumericLiteralPrefix:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/ParallelAssignment:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/PerlBackrefs:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+Style/RedundantBegin:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/RedundantException:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAsExpressionSeparator.
+Style/Semicolon:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: space, no_space
+Style/SpaceBeforeBlockBraces:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 41
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+# SupportedStyles: space, no_space
+Style/SpaceInsideBlockBraces:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 8
+# Cop supports --auto-correct.
+Style/SpaceInsidePercentLiteralDelimiters:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 9
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoredMethods.
+# IgnoredMethods: respond_to, define_method
+Style/SymbolProc:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
+# SupportedStyles: comma, consistent_comma, no_comma
+Style/TrailingCommaInLiteral:
+  Exclude:
+    - 'setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: ExactNameMatch, AllowPredicates, AllowDSLWriters, IgnoreClassMethods, Whitelist.
+# Whitelist: to_ary, to_a, to_c, to_enum, to_h, to_hash, to_i, to_int, to_io, to_open, to_path, to_proc, to_r, to_regexp, to_str, to_s, to_sym
+Style/TrivialAccessors:
+  Exclude:
+    - 'setup.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SpaceInsideParens:
+  Enabled: false
+
+Style/SpaceInsideBrackets:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/TrailingWhitespace:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/NilComparison:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Lint/EndAlignment:
+  Enabled: false
+
+Style/ElseAlignment:
+  Enabled: false
+
+Style/IndentationWidth:
+  Enabled: false
+
+Style/MultilineIfModifier:
+  Enabled: false
+
+Style/TrailingBlankLines:
+  Enabled: false
+
+Style/SpaceInsideStringInterpolation:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+Style/LineEndConcatenation:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/SpaceAfterComma:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/SpaceBeforeBlockBraces:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/SpaceBeforeBlockBraces:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/AutoResourceCleanup:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/ExtraSpacing:
+  Enabled: false
+
+Performance/RangeInclude:
+  Enabled: false
+
+Lint/UnifiedInteger:
+  Enabled: false
+
+Style/TernaryParentheses:
+  Enabled: false
+
+Style/LeadingCommentSpace:
+  Enabled: false
+
+Style/AlignArray:
+  Enabled: false
+
+Style/MethodMissing:
+  Enabled: false
+
+Style/CaseEquality:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/SpaceInsideRangeLiteral:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+Style/Semicolon:
+  Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Lint/UselessAccessModifier:
+  Enabled: false

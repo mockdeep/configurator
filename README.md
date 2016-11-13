@@ -14,7 +14,7 @@ class Klass
 end
 ```
 
-## refer to config paramaters
+## refer to config parameters
 
 Parameters are referable from both Class and Instance.
 

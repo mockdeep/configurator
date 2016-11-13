@@ -253,12 +253,6 @@ Style/IfUnlessModifier:
 Lint/UnderscorePrefixedVariableName:
   Enabled: false
 
-Style/Semicolon:
-  Enabled: false
-
-Style/EmptyCaseCondition:
-  Enabled: false
-
 Lint/UselessAccessModifier:
   Enabled: false
 

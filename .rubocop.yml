@@ -147,12 +147,8 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 12
 
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles, IndentationWidth.
-# SupportedStyles: outdent, indent
 Style/AccessModifierIndentation:
-  EnforcedStyle: indent
+  EnforcedStyle: outdent
 
 # Offense count: 7
 # Cop supports --auto-correct.
@@ -162,12 +158,6 @@ Style/LambdaCall:
   EnforcedStyle: call
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/SpaceInsideParens:
-  Enabled: false
-
-Style/SpaceInsideBrackets:
   Enabled: false
 
 Style/StringLiterals:
@@ -194,9 +184,6 @@ Style/IndentationWidth:
 Style/MultilineIfModifier:
   Enabled: false
 
-Style/SpaceInsideStringInterpolation:
-  Enabled: false
-
 Style/MultilineOperationIndentation:
   Enabled: false
 
@@ -204,9 +191,6 @@ Style/LineEndConcatenation:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/SpaceAfterComma:
   Enabled: false
 
 Style/Documentation:
@@ -221,13 +205,7 @@ Style/RegexpLiteral:
 Style/PerlBackrefs:
   Enabled: false
 
-Style/SpaceBeforeBlockBraces:
-  Enabled: false
-
 Style/ParallelAssignment:
-  Enabled: false
-
-Style/SpaceBeforeBlockBraces:
   Enabled: false
 
 Style/BlockDelimiters:
@@ -254,9 +232,6 @@ Lint/UnifiedInteger:
 Style/TernaryParentheses:
   Enabled: false
 
-Style/LeadingCommentSpace:
-  Enabled: false
-
 Style/AlignArray:
   Enabled: false
 
@@ -267,9 +242,6 @@ Style/CaseEquality:
   Enabled: false
 
 Style/AndOr:
-  Enabled: false
-
-Style/SpaceInsideRangeLiteral:
   Enabled: false
 
 Style/RedundantSelf:

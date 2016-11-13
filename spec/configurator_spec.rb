@@ -3,7 +3,7 @@ class SampleClass
   extend Configurator
   config :name, "sample"
   config :address, "127.0.0.1"
-  config :array, [ 1, 2, 3 ]
+  config :array, [1, 2, 3]
   config :hash, { :foo => 1, :bar => 2, :baz => 3 }
 
 end
@@ -11,7 +11,7 @@ end
 class SampleChildClass < SampleClass
 
   config :name, "child"
-  config :array, [ 4, 5, 6]
+  config :array, [4, 5, 6]
 
 end
 
@@ -21,7 +21,7 @@ RSpec.describe Configurator do
     expect(sample).to be
     expect(sample.config[:name]).to eq "sample"
     expect(sample.config[:address]).to eq "127.0.0.1"
-    expect(sample.config[:array]).to eq [ 1, 2, 3 ]
+    expect(sample.config[:array]).to eq [1, 2, 3]
     expect(sample.config[:hash][:foo]).to eq 1
     expect(sample.config[:hash][:bar]).to eq 2
     expect(sample.config[:hash][:baz]).to eq 3
@@ -40,7 +40,7 @@ RSpec.describe Configurator do
     sample = SampleChildClass.new
     expect(sample.config[:name]).to eq "child"
     expect(sample.config[:address]).to eq "127.0.0.1"
-    expect(sample.config[:array]).to eq [ 4, 5, 6 ]
+    expect(sample.config[:array]).to eq [4, 5, 6]
     expect(sample.config[:hash][:foo]).to eq 1
     expect(sample.config[:hash][:bar]).to eq 2
     expect(sample.config[:hash][:baz]).to eq 3

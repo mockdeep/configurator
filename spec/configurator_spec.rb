@@ -10,7 +10,7 @@ class SampleClass
 end
 
 RSpec.describe Configurator do
-  xit 'does not allow hash access to config' do
+  it 'does not allow hash access to config' do
     sample = SampleClass.new
     expect do
       sample.config[:name]
@@ -20,21 +20,21 @@ RSpec.describe Configurator do
   it 'allows assignment of configurations' do
     sample = SampleClass.new
     expect(sample).to be
-    expect(sample.config[:name]).to eq 'sample'
-    expect(sample.config[:address]).to eq '127.0.0.1'
-    expect(sample.config[:array]).to eq [1, 2, 3]
-    expect(sample.config[:hash][:foo]).to eq 1
-    expect(sample.config[:hash][:bar]).to eq 2
-    expect(sample.config[:hash][:baz]).to eq 3
+    expect(sample.config(:name)).to eq 'sample'
+    expect(sample.config(:address)).to eq '127.0.0.1'
+    expect(sample.config(:array)).to eq [1, 2, 3]
+    expect(sample.config(:hash)[:foo]).to eq 1
+    expect(sample.config(:hash)[:bar]).to eq 2
+    expect(sample.config(:hash)[:baz]).to eq 3
 
-    sample.config[:name] = 'mac'
-    expect(sample.config[:name]).to eq 'mac'
+    sample.config(:name, 'mac')
+    expect(sample.config(:name)).to eq 'mac'
 
     sample.config :boo, 12
-    expect(sample.config[:boo]).to eq 12
+    expect(sample.config(:boo)).to eq 12
 
     sample2 = SampleClass.new
-    expect(sample2.config[:boo]).to eq nil
+    expect(sample2.config(:boo)).to eq nil
   end
 
   it 'returns the given key when passed' do

@@ -10,8 +10,6 @@ module Configurator
         return value
       elsif key
         return @__config[key]
-      else
-        return @__config
       end
     end
 
@@ -34,7 +32,7 @@ module Configurator
       if respond_to?(:ancestors)
         {}
       else
-        self.class.config
+        self.class.instance_variable_get(:@__config)
       end
     end
 

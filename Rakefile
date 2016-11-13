@@ -1,4 +1,6 @@
-require 'config/requirements'
-require 'config/hoe' # setup Hoe + all gem configuration
+require 'bundler/gem_tasks'
+require 'rake/testtask'
 
-Dir['tasks/**/*.rake'].each { |rake| load rake }
+Rake::TestTask.new
+
+task default: :test

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class SampleClass
 
-  extend Configurator
+  include Configurator
   config :name, 'sample'
   config :address, '127.0.0.1'
   config :array, [1, 2, 3]
@@ -14,6 +14,12 @@ RSpec.describe Configurator do
     sample = SampleClass.new
     expect do
       sample.config[:name]
+    end.to raise_error(NoMethodError)
+  end
+
+  it 'does not allow calling on the class' do
+    expect do
+      SampleClass.name
     end.to raise_error(NoMethodError)
   end
 

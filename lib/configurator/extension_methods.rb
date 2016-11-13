@@ -32,7 +32,7 @@ module Configurator
       if respond_to?(:ancestors)
         {}
       else
-        self.class.instance_variable_get(:@__config)
+        self.class.class_config
       end
     end
 

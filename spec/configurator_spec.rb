@@ -16,7 +16,6 @@ class SampleChildClass < SampleClass
 end
 
 RSpec.describe Configurator do
-
   it 'allows assignment of configurations' do
     sample = SampleClass.new
     expect(sample).to be
@@ -62,5 +61,4 @@ RSpec.describe Configurator do
     expect(sample.config[:giz]).to eq 12
     expect(sample2.config[:giz]).to eq 999
   end
-
 end

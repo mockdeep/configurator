@@ -4,7 +4,7 @@ require 'configurator/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "configurator"
-  spec.version       = Configurator::VERSION::STRING
+  spec.version       = Configurator::VERSION
   spec.authors       = ["wz", "Robert Fletcher"]
   spec.email         = ["wz0403@gmail.com", "lobatifricha@gmail.com"]
 

@@ -1,14 +1,14 @@
-Configurator extends configuration behavior to class.
+`Configurator` extends configuration behavior to class.
 
 ## make class with configurator extension
 
-Configurator allows you to delcare config paramaters with keys to class. It
+`Configurator` allows you to declare config parameters with keys to class. It
 works as hash.
 
 ```ruby
 require 'configurator'
 class Klass
-  extend Congigurator
+  extend Configurator
   config :name, 'Matsumoto'
   config :age, 18
 end
@@ -16,7 +16,7 @@ end
 
 ## refer to config paramaters
 
-Paramaters are referable from both Class and Instance.
+Parameters are referable from both Class and Instance.
 
 from class:
 
@@ -33,9 +33,9 @@ kls.config[:name]     #=> 'Matsumoto'
 kls.config[:age]      #=> 18
 ```
 
-## inherite and rewrite
+## inherit and rewrite
 
-Paramaters are also inheritable and rewritable.
+Parameters are also inheritable and rewritable.
 
 ```ruby
 class SubKlass < Klass
@@ -51,7 +51,7 @@ kls.config[:name]    # => 'Matsumoto'
 
 ## instance specific config paramaters
 
-It works as like as instance specific method.
+It works as an instance specific method.
 
 ```ruby
 Klass.config :name, 'Matz'

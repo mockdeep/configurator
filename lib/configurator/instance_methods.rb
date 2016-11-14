@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 module Configurator
   module InstanceMethods
+    def initialize
+      @config = self.class.default_config.dup
+      super
+    end
 
   private
 
-    def internal_config
-      @config ||= self.class.default_config.dup
-    end
-
-    def config(key, value = nil)
-      if value
-        internal_config[key] = value
-      else
-        internal_config[key]
-      end
-    end
+    attr_reader :config
   end
 end

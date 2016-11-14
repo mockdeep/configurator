@@ -4,11 +4,11 @@ module Configurator
     def config(key, default: nil)
       default_config[key] = default
       define_method(key) do
-        internal_config[key]
+        config[key]
       end
 
       define_method("#{key}=") do |value|
-        internal_config[key] = value
+        config[key] = value
       end
     end
 

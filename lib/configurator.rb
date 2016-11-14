@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 require_relative 'configurator/class_methods'
-require_relative 'configurator/extension_methods'
+require_relative 'configurator/instance_methods'
 
 module Configurator
-  include Configurator::ExtensionMethods
+  include Configurator::InstanceMethods
   def self.included(base)
     base.public_send :extend, Configurator::ClassMethods
-    base.public_send :include, Configurator::ExtensionMethods
   end
 end

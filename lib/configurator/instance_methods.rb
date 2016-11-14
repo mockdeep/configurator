@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Configurator
-  module ExtensionMethods
+  module InstanceMethods
     def config(key = nil, value = nil)
       @__self_config ||= {}
       @__config = __check_config

@@ -24,9 +24,9 @@ module Configurator
 
     def __check_config
       @__config ||= {}
-      __config = __merge_config
+      __local_config = __merge_config
       @__config.each do |k, v|
-        __self_config[k] = v unless __config[k] == v
+        __self_config[k] = v unless __local_config[k] == v
       end
       @__config = __merge_config
     end

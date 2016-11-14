@@ -8,7 +8,7 @@ module Configurator
         @__config = __merge_config
         return value
       elsif key
-        return @__config[key]
+        return __config[key]
       end
     end
 
@@ -22,18 +22,21 @@ module Configurator
       self.class.default_config.merge(__self_config)
     end
 
-    def __check_config
+    def __config
       @__config ||= {}
+    end
+
+    def __check_config
       __local_config = __merge_config
-      @__config.each do |k, v|
+      __config.each do |k, v|
         __self_config[k] = v unless __local_config[k] == v
       end
       @__config = __merge_config
     end
 
     def method_missing(name, *args, &block)
-      if @__config.keys.include?(name.to_sym)
-        @__config[name.to_sym]
+      if __config.keys.include?(name.to_sym)
+        __config[name.to_sym]
       else
         super
       end

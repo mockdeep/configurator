@@ -2,10 +2,10 @@
 class SampleClass
 
   include Configurator
-  config :name, 'sample'
-  config :address, '127.0.0.1'
-  config :array, [1, 2, 3]
-  config :hash, foo: 1, bar: 2, baz: 3
+  config :name, default: 'sample'
+  config :address, default: '127.0.0.1'
+  config :array, default: [1, 2, 3]
+  config :hash, default: { foo: 1, bar: 2, baz: 3 }
 
 end
 

@@ -10,13 +10,6 @@ class SampleClass
 end
 
 RSpec.describe Configurator do
-  it 'does not allow hash access to config' do
-    sample = SampleClass.new
-    expect do
-      sample.config[:name]
-    end.to raise_error(NoMethodError)
-  end
-
   it 'does not allow calling on the class' do
     expect do
       SampleClass.address

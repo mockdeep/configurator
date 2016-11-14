@@ -6,6 +6,10 @@ module Configurator
       define_method(key) do
         internal_config[key]
       end
+
+      define_method("#{key}=") do |value|
+        internal_config[key] = value
+      end
     end
 
     def default_config

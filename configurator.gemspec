@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.0'
+  spec.add_dependency 'activesupport', '~> 5.0'
 
   spec.add_development_dependency 'bundler', '~> 1.13'
   spec.add_development_dependency 'guard', '~> 2.14'

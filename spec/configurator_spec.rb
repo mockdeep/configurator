@@ -51,4 +51,11 @@ RSpec.describe Configurator do
     expect(sample.name).to eq 'sample'
     expect(sample.address).to eq '127.0.0.1'
   end
+
+  it 'loads default configurations from project root' do
+    require_relative 'fixtures/test_library/lib/test_library/test_class'
+    expect(TestLibrary::TestClass.default_config[:foo]).to eq 'blah'
+    expect(TestLibrary::TestClass.new.foo).to eq 'blah'
+    expect(TestLibrary::TestClass.new.bar).to eq(boo: 'bloop')
+  end
 end

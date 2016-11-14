@@ -55,7 +55,40 @@ RSpec.describe Configurator do
   it 'loads default configurations from project root' do
     require_relative 'fixtures/test_library/lib/test_library/test_class'
     expect(TestLibrary::TestClass.default_config[:foo]).to eq 'blah'
-    expect(TestLibrary::TestClass.new.foo).to eq 'blah'
-    expect(TestLibrary::TestClass.new.bar).to eq(boo: 'bloop')
+    config = TestLibrary::TestClass.new
+    expect(config.foo).to eq('blah')
+    expect(config.bar).to eq(boo: 'bloop')
+    expect(config).not_to respond_to(:here)
+  end
+
+  it 'loads configurations from the current directory' do
+    Dir.chdir(File.join(File.dirname(__FILE__), 'fixtures')) do
+      load './test_library/lib/test_library/test_class.rb'
+      expect(TestLibrary::TestClass.default_config[:foo]).to eq 'another foo'
+
+      config = TestLibrary::TestClass.new
+      expect(config.foo).to eq('another foo')
+      expect(config.bar).to eq(boo: 'bloop')
+      expect(config.here).to eq(I: 'am')
+    end
+  end
+
+  it 'loads configurations from the home directory' do
+    home_file_path = File.expand_path('~/.test_library.yml')
+    begin
+      File.write(home_file_path, "home: home config\nfoo: home foo\nbar: bugs")
+      Dir.chdir(File.join(File.dirname(__FILE__), 'fixtures')) do
+        load './test_library/lib/test_library/test_class.rb'
+        expect(TestLibrary::TestClass.default_config[:foo]).to eq 'another foo'
+
+        config = TestLibrary::TestClass.new
+        expect(config.foo).to eq('another foo')
+        expect(config.bar).to eq('bugs')
+        expect(config.here).to eq(I: 'am')
+        expect(config.home).to eq('home config')
+      end
+    ensure
+      File.delete(home_file_path)
+    end
   end
 end

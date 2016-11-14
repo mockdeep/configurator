@@ -19,7 +19,7 @@ RSpec.describe Configurator do
 
   it 'does not allow calling on the class' do
     expect do
-      SampleClass.name
+      SampleClass.address
     end.to raise_error(NoMethodError)
   end
 

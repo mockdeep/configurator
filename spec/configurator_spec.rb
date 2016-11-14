@@ -1,15 +1,13 @@
 # frozen_string_literal: true
-class SampleClass
-
-  include Configurator
-  config :name, default: 'sample'
-  config :address, default: '127.0.0.1'
-  config :array, default: [1, 2, 3]
-  config :hash, default: { foo: 1, bar: 2, baz: 3 }
-
-end
-
 RSpec.describe Configurator do
+  class SampleClass
+
+    include Configurator
+    config :name, default: 'sample'
+    config :address, default: '127.0.0.1'
+
+  end
+
   let(:sample) { SampleClass.new }
 
   it 'does not allow calling properties on the class' do
@@ -24,6 +22,12 @@ RSpec.describe Configurator do
     end.to raise_error(NoMethodError)
   end
 
+  it 'does not allow referencing arbitrary properties' do
+    expect do
+      sample.boo
+    end.to raise_error(NoMethodError)
+  end
+
   it 'does not allow assigning arbitrary properties' do
     expect do
       sample.boo = 12
@@ -31,13 +35,6 @@ RSpec.describe Configurator do
   end
 
   it 'allows assignment of configurations' do
-    expect(sample.name).to eq 'sample'
-    expect(sample.address).to eq '127.0.0.1'
-    expect(sample.array).to eq [1, 2, 3]
-    expect(sample.hash[:foo]).to eq 1
-    expect(sample.hash[:bar]).to eq 2
-    expect(sample.hash[:baz]).to eq 3
-
     sample.name = 'mac'
     expect(sample.name).to eq 'mac'
   end

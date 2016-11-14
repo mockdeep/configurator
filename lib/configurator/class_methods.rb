@@ -1,17 +1,12 @@
 # frozen_string_literal: true
 module Configurator
   module ClassMethods
-    def config(key = nil, value = nil)
-      @__config ||= {}
-      if key && value
-        @__config[key] = value
-      elsif key
-        return @__config[key]
-      end
+    def config(key, value = nil)
+      default_config[key] = value
     end
 
-    def class_config
-      @__config
+    def default_config
+      @default_config ||= {}
     end
   end
 end

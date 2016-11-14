@@ -32,7 +32,7 @@ module Configurator
       if respond_to?(:ancestors)
         {}
       else
-        self.class.class_config
+        self.class.default_config
       end
     end
 

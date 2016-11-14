@@ -42,7 +42,7 @@ RSpec.describe Configurator do
     expect(sample.config(:address)).to eq '127.0.0.1'
   end
 
-  xit 'allows direct access of configurations' do
+  it 'allows direct access of configurations' do
     sample = SampleClass.new
     expect(sample.name).to eq 'sample'
     expect(sample.address).to eq '127.0.0.1'

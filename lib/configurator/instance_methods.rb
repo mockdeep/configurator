@@ -2,19 +2,22 @@
 module Configurator
   module InstanceMethods
     def config(key, value = nil)
-      @config ||= self.class.default_config.dup
       if value
-        @config[key] = value
+        internal_config[key] = value
       else
-        @config[key]
+        internal_config[key]
       end
     end
 
   private
 
+    def internal_config
+      @config ||= self.class.default_config.dup
+    end
+
     def method_missing(name, *args, &block)
-      if __config.keys.include?(name.to_sym)
-        __config[name.to_sym]
+      if internal_config.keys.include?(name.to_sym)
+        internal_config[name.to_sym]
       else
         super
       end

@@ -2,12 +2,27 @@
 module Configurator
   module InstanceMethods
     def initialize
-      @config = self.class.default_config.dup
+      validate_config
+      loaded_config.each { |key, value| public_send("#{key}=", value) }
       super
     end
 
   private
 
-    attr_reader :config
+    def loaded_config
+      self.class.loaded_config
+    end
+
+    def configurable_options
+      self.class.configurable_options
+    end
+
+    def validate_config
+      extra_options = loaded_config.keys - configurable_options
+      return if extra_options.empty?
+
+      message = "invalid configuration options #{extra_options}"
+      raise Configurator::ConfigurationError, message
+    end
   end
 end

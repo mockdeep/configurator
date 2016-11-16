@@ -3,8 +3,9 @@ RSpec.describe Configurator do
   class SampleClass
 
     include Configurator
-    config :name, default: 'sample'
-    config :address, default: '127.0.0.1'
+
+    config :name
+    config :address
 
   end
 
@@ -40,6 +41,7 @@ RSpec.describe Configurator do
   end
 
   it 'does not infect other instances with changes' do
+    SampleClass.loaded_config = { name: 'sample' }
     sample.name = 'mac'
     expect(sample.name).to eq 'mac'
 
@@ -48,28 +50,38 @@ RSpec.describe Configurator do
   end
 
   it 'allows direct access of configurations' do
+    SampleClass.loaded_config = { address: '127.0.0.1', name: 'sample' }
+
     expect(sample.name).to eq 'sample'
     expect(sample.address).to eq '127.0.0.1'
   end
 
+  it 'throws an error when given an invalid configuration key' do
+    SampleClass.loaded_config = { boo: 'gers' }
+    message = /invalid configuration/
+    expect do
+      SampleClass.new
+    end.to raise_error(Configurator::ConfigurationError, message)
+  end
+
   it 'loads default configurations from project root' do
     require_relative 'fixtures/test_library/lib/test_library/test_class'
-    expect(TestLibrary::TestClass.default_config[:foo]).to eq 'blah'
-    config = TestLibrary::TestClass.new
-    expect(config.foo).to eq('blah')
-    expect(config.bar).to eq(boo: 'bloop')
-    expect(config).not_to respond_to(:here)
+    expect(TestLibrary::TestClass.loaded_config[:foo]).to eq 'blah'
+    loaded_config = TestLibrary::TestClass.loaded_config
+    expect(loaded_config[:foo]).to eq('blah')
+    expect(loaded_config[:bar]).to eq(boo: 'bloop')
+    expect(loaded_config.keys).not_to include(:here)
   end
 
   it 'loads configurations from the current directory' do
     Dir.chdir(File.join(File.dirname(__FILE__), 'fixtures')) do
       load './test_library/lib/test_library/test_class.rb'
-      expect(TestLibrary::TestClass.default_config[:foo]).to eq 'another foo'
+      expect(TestLibrary::TestClass.loaded_config[:foo]).to eq 'another foo'
 
-      config = TestLibrary::TestClass.new
-      expect(config.foo).to eq('another foo')
-      expect(config.bar).to eq(boo: 'bloop')
-      expect(config.here).to eq(I: 'am')
+      loaded_config = TestLibrary::TestClass.loaded_config
+      expect(loaded_config[:foo]).to eq('another foo')
+      expect(loaded_config[:bar]).to eq(boo: 'bloop')
+      expect(loaded_config[:here]).to eq(I: 'am')
     end
   end
 
@@ -79,13 +91,13 @@ RSpec.describe Configurator do
       File.write(home_file_path, "home: home config\nfoo: home foo\nbar: bugs")
       Dir.chdir(File.join(File.dirname(__FILE__), 'fixtures')) do
         load './test_library/lib/test_library/test_class.rb'
-        expect(TestLibrary::TestClass.default_config[:foo]).to eq 'another foo'
+        expect(TestLibrary::TestClass.loaded_config[:foo]).to eq 'another foo'
 
-        config = TestLibrary::TestClass.new
-        expect(config.foo).to eq('another foo')
-        expect(config.bar).to eq('bugs')
-        expect(config.here).to eq(I: 'am')
-        expect(config.home).to eq('home config')
+        loaded_config = TestLibrary::TestClass.loaded_config
+        expect(loaded_config[:foo]).to eq('another foo')
+        expect(loaded_config[:bar]).to eq('bugs')
+        expect(loaded_config[:here]).to eq(I: 'am')
+        expect(loaded_config[:home]).to eq('home config')
       end
     ensure
       File.delete(home_file_path)

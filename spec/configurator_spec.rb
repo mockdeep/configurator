@@ -56,14 +56,6 @@ RSpec.describe Configurator do
     expect(sample.address).to eq '127.0.0.1'
   end
 
-  it 'throws an error when given an invalid configuration key' do
-    SampleClass.loaded_config = { boo: 'gers' }
-    message = /invalid configuration/
-    expect do
-      SampleClass.new
-    end.to raise_error(Configurator::ConfigurationError, message)
-  end
-
   it 'loads default configurations from project root' do
     require_relative 'fixtures/test_library/lib/test_library/test_class'
     expect(TestLibrary::TestClass.loaded_config[:foo]).to eq 'blah'

@@ -1,3 +1,4 @@
 foo: blah
 bar:
   boo: bloop
+  testy_test: <%= "#{2 * 2} cheeseburgers" %>

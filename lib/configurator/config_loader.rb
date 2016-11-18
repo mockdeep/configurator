@@ -2,6 +2,7 @@
 require 'active_support/inflector/methods'
 require 'active_support/core_ext/hash/keys'
 require 'yaml'
+require 'erb'
 
 module Configurator
   class ConfigLoader
@@ -19,23 +20,31 @@ module Configurator
 
     def pwd_config(library_config_name)
       pwd_config_path = File.join(Dir.pwd, library_config_name)
-      load_yaml(pwd_config_path)
+      load_config(pwd_config_path)
     end
 
     def home_config(library_config_name)
       home_config_path = File.join(Dir.home, library_config_name)
-      load_yaml(home_config_path)
+      load_config(home_config_path)
     end
 
     def library_config(class_path, call_site)
       file_path = call_site.split('.rb:').first
       project_path = file_path.chomp(File.join('lib', class_path))
       lib_config_path = File.join(project_path, 'config', 'default.yml')
-      load_yaml(lib_config_path)
+      load_config(lib_config_path)
+    end
+
+    def load_config(path)
+      File.exist?(path) ? load_yaml(path) : {}
     end
 
     def load_yaml(path)
-      File.exist?(path) ? YAML.load(File.read(path)).deep_symbolize_keys : {}
+      YAML.safe_load(config_file_contents(path)).deep_symbolize_keys
+    end
+
+    def config_file_contents(path)
+      ERB.new(IO.read(path)).result
     end
 
   end

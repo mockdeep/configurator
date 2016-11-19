@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+require 'active_support/core_ext/object/deep_dup'
+
 module Configurator
   module InstanceMethods
     def initialize
       validate_config
-      loaded_config.each { |key, value| public_send("#{key}=", value) }
+      loaded_config.deep_dup.each { |key, value| public_send("#{key}=", value) }
       super
     end
 

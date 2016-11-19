@@ -5,6 +5,8 @@ RSpec.describe Configurator do
     attr_reader :test_thing
     include Configurator
 
+    config :some_config
+
     def initialize
       @test_thing = 'testy'
     end
@@ -22,6 +24,15 @@ RSpec.describe Configurator do
       expect do
         TestConfig.new
       end.to raise_error(Configurator::ConfigurationError, message)
+    end
+
+    it 'does not clobber nested configuration when overridden' do
+      TestConfig.loaded_config = { some_config: %w(yo).freeze }.freeze
+      one_config = TestConfig.new
+      expect do
+        one_config.some_config << 'yoma'
+      end.not_to change(TestConfig, :loaded_config).from(some_config: %w(yo))
+      expect(one_config.some_config).to eq(%w(yo yoma))
     end
   end
 end

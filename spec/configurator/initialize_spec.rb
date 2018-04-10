@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe Configurator do
   class TestConfig
 
@@ -27,12 +28,12 @@ RSpec.describe Configurator do
     end
 
     it 'does not clobber nested configuration when overridden' do
-      TestConfig.loaded_config = { some_config: %w(yo).freeze }.freeze
+      TestConfig.loaded_config = { some_config: %w[yo].freeze }.freeze
       one_config = TestConfig.new
       expect do
         one_config.some_config << 'yoma'
-      end.not_to change(TestConfig, :loaded_config).from(some_config: %w(yo))
-      expect(one_config.some_config).to eq(%w(yo yoma))
+      end.not_to change(TestConfig, :loaded_config).from(some_config: %w[yo])
+      expect(one_config.some_config).to eq(%w[yo yoma])
     end
   end
 end

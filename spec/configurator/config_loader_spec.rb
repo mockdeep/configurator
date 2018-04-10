@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe Configurator::ConfigLoader do
   let(:expected_bar) { { boo: 'bloop', testy_test: '4 cheeseburgers' } }
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'configurator/config_loader'
 require_relative 'configurator/configuration_error'
 require_relative 'configurator/class_methods'

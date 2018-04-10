@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'lib/configurator/version'
 
 Gem::Specification.new do |spec|
@@ -16,7 +17,7 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.0'
+  spec.required_ruby_version = '>= 2.3'
   spec.add_dependency 'activesupport', '~> 4.2'
 
   spec.add_development_dependency 'bundler', '~> 1.13'
@@ -26,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry', '~> 0.10'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 0.45.0'
-  spec.add_development_dependency 'rubocop-rspec', '~> 1.8.0'
+  spec.add_development_dependency 'rubocop', '~> 0.54.0'
+  spec.add_development_dependency 'rubocop-rspec', '~> 1.25.0'
   spec.add_development_dependency 'simplecov', '~> 0.12'
 end

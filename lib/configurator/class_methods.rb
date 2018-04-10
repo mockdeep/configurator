@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Configurator
   module ClassMethods
     attr_accessor :loaded_config
